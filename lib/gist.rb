@@ -65,7 +65,14 @@ class Gist
   def put_gist
     begin
       gist = RestClient::Resource.new(GISTS_URL + @gist_id)
-      response = gist.put(gist_data)
+      file_name = HTTParty.get("https://gist.github.com/api/v1/json/#{@gist_id}")["gists"][0]["files"][0]
+      old_version = RestClient::Resource.new("http://gist.github.com/raw/#{@gist_id}/#{file_name}")
+      old_data = old_version.get
+      if old_data != @data
+        response = gist.put(gist_data)
+      else
+        @gist_id
+      end
     rescue RestClient::Found
       Rails.logger.debug "Gist PUT response:\n#{response}"
       Rails.logger.info "Gist #{gist_public_url(@gist_id)} updated"

@@ -6,7 +6,6 @@ gem 'rails', '3.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'pg'
 gem 'haml'
 gem 'mechanize'
 gem 'rails3-generators'
@@ -26,6 +25,7 @@ gem "devise", "1.1.2"
 gem 'nokogiri', '1.4.1'
 gem 'rest-client', '1.5.1'
 gem 'git', '1.2.5'
+gem 'httparty'
 
 # gem 'aws-s3', :require => 'aws/s3'
 
@@ -34,6 +34,10 @@ gem 'git', '1.2.5'
 # group :test do
 #   gem 'webrat'
 # end
+
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem "wirble"
