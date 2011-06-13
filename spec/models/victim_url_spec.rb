@@ -5,21 +5,14 @@ describe VictimUrl do
 
   context "When Mechanize returns a simple page" do
     before do
-      Mechanize.stub!(:new).and_return(
-        mock(
-          :get => true,
-          :page => mock(
-            :search => ['<html>', '</html>']
-          )
-        )
-      )
+      stubbed_mechanize
     end
 
     context "and victim_url is a valid new instance of VictimUrl" do
       let(:victim_url) { VictimUrl.new( valid_victim_url_attributes ) }
 
       context "and gist.publish returns '12345'" do
-        before{ Gist.stub!(:new).and_return mock(:publish => '12345') }
+        before{ stubbed_gist('12345') }
 
         it "should be valid" do
           victim_url.valid?.should == true
@@ -65,23 +58,9 @@ describe VictimUrl do
             context "should not save record" do
               before{ victim_url.should_not_receive(:save) }
 
-              it "when check_for_updates executed" do
-                victim_url.check_for_updates
-              end
+              it { victim_url.check_for_updates }
             end
           end
-
-          # context "and record enabled" do
-          #   before{ victim_url.update_attribute(:enabled, true)}
-          # 
-          #   context "should not save record" do
-          #     before{ victim_url.should_not_receive(:save) }
-          # 
-          #     it "when check_for_updates executed" do
-          #       victim_url.check_for_updates
-          #     end
-          #   end
-          # end
         end
 
 
