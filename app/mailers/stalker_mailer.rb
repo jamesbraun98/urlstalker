@@ -10,6 +10,6 @@ class StalkerMailer < ActionMailer::Base
 
   def look_whos_stalking(victim_url)
     @victim_url = victim_url
-    mail(:to => victim_url.user.email, :subject => "Look Who's Stalking")
+    mail(:to => victim_url.user.email, :subject => "Look Who's Stalking - #{@victim_url.name}")
   end
 end
