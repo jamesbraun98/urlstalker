@@ -1,4 +1,4 @@
-Urlstalker::Application.routes.draw do |map|
+Urlstalker::Application.routes.draw do
   devise_for :users
 
   resources :victim_urls do
