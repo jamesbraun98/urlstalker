@@ -23,4 +23,9 @@ For example my local config/initializers/github.rb is:
 Your github token can be found in your github account settings.
 
 
+To install:
 
+   bundle
+   bundle exec rake db:setup
+   bundle exec rake test
+   bundle exec rake spec
