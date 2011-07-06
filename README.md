@@ -14,7 +14,13 @@ hour or once a day.
 There are no tests. We are hiring. Show us your
 skills. Add some tests. Make some changes.
      
-You'll need to set a username and github token as an environment variable or as a config/initializer.      
-For example - 
-Gist::GITHUB_LOGIN = 'foo'
-Gist::GITHUB_TOKEN = 'barbarbar'
+You'll need to set a username and github token as an environment variable or as a config/initializers/github.rb.      
+For example my local config/initializers/github.rb is:
+
+    Gist::GITHUB_LOGIN = 'foo'
+    Gist::GITHUB_TOKEN = 'barbarbar'
+
+Your github token can be found in your github account settings.
+
+
+
