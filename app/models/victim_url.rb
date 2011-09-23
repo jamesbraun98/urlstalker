@@ -26,8 +26,7 @@ class VictimUrl < ActiveRecord::Base
   def check_for_updates
     if self.enabled?
       self.publish_gist
-      output = `git ls-remote git://gist.github.com/#{self.gist_id}.git`
-      sha = output.split("\t").first
+      sha = self.output.split("\t").first
       if self.git_sha.nil?
         self.git_sha = sha
         self.save
@@ -51,5 +50,9 @@ class VictimUrl < ActiveRecord::Base
       gist = Gist.new(name,results, gist_id)
       gist.publish
     end
+  end
+
+  def output
+    `git ls-remote git://gist.github.com/#{self.gist_id}.git`
   end
 end
